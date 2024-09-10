@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <!-- <resource id="Kitchen_Company::customer"> -->
+                <!-- Define your frontend resources here -->
+                <resource id="Kitchen_Notice::notice" title="Notice" translate="title" sortOrder="10">
+                    <!-- Define specific permissions for staff management -->
+                    <resource id="Kitchen_Notice::notices" title="Manage Notice" translate="title" />
+                    
+                </resource>
+            <!-- </resource> -->
+        </resources>
+    </acl>
+</config>

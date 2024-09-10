@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">kitchen_notice_form.kitchen_notice_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Page Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Kitchen\Notice\Block\Adminhtml\Notices\SaveButton"/>
+          
+        </buttons>
+        <namespace>kitchen_notice_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>kitchen_notice_form.kitchen_notice_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="kitchen_notice_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+         <settings>
+            <submitUrl path="notice/notice/save"/>
+        </settings>
+        <dataProvider class="Kitchen\Notice\Model\DataProvider" name="kitchen_notice_form_data_source">
+            <settings>
+                <requestFieldName>notice_id</requestFieldName>
+                <primaryFieldName>notice_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general_information" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">General Information</label>
+        </settings>
+        <field name="title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">title</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <visible>true</visible>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="description" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">description</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <visible>true</visible>
+                <dataScope>description</dataScope>
+            </settings>
+        </field>
+
+  <field name="Status" sortOrder="50" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="customer_group" sortOrder="40" formElement="multiselect">
+            <settings>
+                <label translate="true">Customer Group</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Customer\Model\Customer\Source\GroupSourceInterface"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+  </field>
+    </fieldset>
+
+</form>
